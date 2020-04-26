@@ -13,17 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', ['as'=>'home' ,function () {
-    return view('welcome');
-}]);
+//Route::get('/', ['as'=>'home' ,function () {
+//    return view('welcome');
+//}]);
 
-Route::get('/admin', ['as'=>'admin', 'middleware'=>'auth', 'uses'=>'Admin\IndexController@show']);
+// Route::get('/admin', ['as'=>'admin', 'middleware'=>'auth', 'uses'=>'Admin\IndexController@show']);
+Route::get('/', ['as'=>'home', 'uses'=>'Admin\IndexController@show']);
 
-Route::get('/about/{id}', 'FirstController@show');
+Route::get('/about', ['as'=>'about', 'uses'=>'Admin\AboutController@show']);
 
-Route::get('/articles', ['uses'=>'Admin\Core@getArticles', 'as'=>'articles']);
+Route::get('/articles', ['as'=>'articles', 'uses'=>'Admin\Core@getArticles']);
 
-Route::get('/article/{page}', ['uses'=>'Admin\Core@getArticle', 'as'=>'article', 'middleware'=>'mymiddle']);
+Route::get('/article/{id}', ['as'=>'article', 'uses'=>'Admin\Core@getArticle']);
 
 // Route::resource('/pages', 'Admin\CoreResource');
 
