@@ -17,21 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('page/{cat}/{id}', function ($cat, $id) {
-    echo $id.' | '.$cat;
-    // return view('page');
-})->where(['cat'=>'[A-Za-z]+', 'id'=>'[0-9]+']);
+Route::get('/about/{id}', 'FirstController@show');
 
-Route::get('/article/{id}', ['as'=>'article', function ($id) {
-    echo $id;
-}]);
+Route::get('/articles', ['uses'=>'Admin\Core@getArticles', 'as'=>'articles']);
+Route::get('/article/{id}', ['uses'=>'Admin\Core@getArticle', 'as'=>'article']);
 
-Route::group([], function () {
+// Route::resource('/pages', 'Admin\CoreResource');
 
-    Route::get('page/create', function () {
-
-        return redirect()->route('article', ['id'=> 25]);
-        // echo 'page/create';
-    });
-
-});
+// Route::controller('/pages', 'PagesController');
