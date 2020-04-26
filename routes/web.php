@@ -13,14 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', ['as'=>'home' ,function () {
     return view('welcome');
-});
+}]);
+
+Route::get('/admin', ['as'=>'admin', 'middleware'=>'auth', 'uses'=>'Admin\IndexController@show']);
 
 Route::get('/about/{id}', 'FirstController@show');
 
 Route::get('/articles', ['uses'=>'Admin\Core@getArticles', 'as'=>'articles']);
-Route::get('/article/{id}', ['uses'=>'Admin\Core@getArticle', 'as'=>'article']);
+
+Route::get('/article/{page}', ['uses'=>'Admin\Core@getArticle', 'as'=>'article', 'middleware'=>'mymiddle']);
 
 // Route::resource('/pages', 'Admin\CoreResource');
 

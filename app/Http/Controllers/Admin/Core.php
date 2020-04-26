@@ -14,6 +14,6 @@ class Core extends Controller
 
     public function getArticle($id)
     {
-
+        echo 'pages';
     }
 }
