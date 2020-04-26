@@ -17,6 +17,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('page', function () {
-    return view('page');
+Route::get('page/{cat}/{id}', function ($cat, $id) {
+    echo $id.' | '.$cat;
+    // return view('page');
+})->where(['cat'=>'[A-Za-z]+', 'id'=>'[0-9]+']);
+
+Route::get('/article/{id}', ['as'=>'article', function ($id) {
+    echo $id;
+}]);
+
+Route::group([], function () {
+
+    Route::get('page/create', function () {
+
+        return redirect()->route('article', ['id'=> 25]);
+        // echo 'page/create';
+    });
+
 });
