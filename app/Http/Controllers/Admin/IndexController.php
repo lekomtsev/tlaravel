@@ -13,12 +13,12 @@ class IndexController extends Controller
         // return view('default.template', $data);
         // return view('default.template')->with('title', 'Hello, world! 567');
 
-        if (view()->exists('default.template')) {
+        if (view()->exists('default.index')) {
             $data = ['title'=>'Hello, world!'];
 
             $path = config('view.path');
-            // view()->file($path[0].'/default/template.php')->withTitle('New Title');
-            return view('default.template', $data);
+            // view()->file($path[0].'/default/layouts.blade.php')->withTitle('New Title');
+            return view('default.index', $data);
         }
 
         abort(404);
